@@ -30,7 +30,6 @@ export class Database {
 
   update(table, id, data) {
     const rowIndex = this.#database[table].findIndex((row) => row.id === id);
-    console.log(rowIndex);
     if (rowIndex > -1) {
       const oldData = this.#database[table][rowIndex];
       this.#database[table][rowIndex] = { id, ...oldData, ...data };
@@ -46,12 +45,21 @@ export class Database {
 
     if (search) {
       data = data.filter((row) => {
-        Object.entries(search).some(([key, value]) => {
-          return row[key].includes(value);
+        return Object.entries(search).some(([key, value]) => {
+          return row[key].toLowerCase().includes(value.toLowerCase());
         });
       });
     }
 
     return data;
+  }
+  delete(table, id) {
+    const rowIndex = this.#database[table].findIndex((row) => row.id === id);
+    if (rowIndex > -1) {
+      this.#database[table].splice(rowIndex, 1);
+      this.#persists();
+    } else {
+      throw new Error("Resource not found");
+    }
   }
 }

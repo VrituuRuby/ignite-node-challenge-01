@@ -29,17 +29,43 @@ export const routes = [
       const { id } = req.params;
       const { title, description } = req.body;
 
-      try {
-        const task = database.update("tasks", id, {
-          title,
-          description,
-          updated_at: new Date(),
-        });
+      const [existingTask] = database.select("tasks", { id });
 
-        return res.writeHead(202).end(JSON.stringify(task));
-      } catch (error) {
-        return res.writeHead(404).end('{ error: "Task not found" }');
-      }
+      if (!existingTask)
+        return res.writeHead(404).end(`{"error":"Task not found"}`);
+
+      if (!title)
+        return res.writeHead(403).end('{"error":"Title is required"}');
+      if (!description)
+        return res.writeHead(403).end('{"error":"description is required"}');
+
+      const task = database.update("tasks", id, {
+        title,
+        description,
+        updated_at: new Date(),
+      });
+      return res.writeHead(202).end(JSON.stringify(task));
+    },
+  },
+  {
+    method: "PATCH",
+    path: buildRoutePath("/tasks/:id/complete"),
+    handler: (req, res) => {
+      const { id } = req.params;
+
+      const [existingTask] = database.select("tasks", { id });
+
+      if (!existingTask)
+        return res.writeHead(404).end('{"error":"Task not found"}');
+
+      const isTaskCompleted = existingTask.completed_at;
+
+      const task = database.update("tasks", id, {
+        completed_at: isTaskCompleted ? null : new Date(),
+        updated_at: new Date(),
+      });
+
+      return res.writeHead(202).end(JSON.stringify(task));
     },
   },
   {
@@ -57,6 +83,21 @@ export const routes = [
           : null
       );
       return res.writeHead(201).end(JSON.stringify(tasks));
+    },
+  },
+  {
+    method: "DELETE",
+    path: buildRoutePath("/tasks/:taskId"),
+    handler: (req, res) => {
+      const { taskId } = req.params;
+
+      const [existingTask] = database.select("tasks", { id: taskId });
+      console.log(existingTask);
+      if (!existingTask)
+        return res.writeHead(404).end('{"error":"Task not found"}');
+
+      database.delete("tasks", taskId);
+      return res.writeHead(204).end();
     },
   },
 ];

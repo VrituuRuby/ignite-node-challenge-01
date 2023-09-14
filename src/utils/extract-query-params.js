@@ -8,7 +8,7 @@ export function extractQueryParams(query) {
     .split("&")
     .reduce((queryParams, param) => {
       const [key, value] = param.split("=");
-      queryParams[key] = value;
+      queryParams[key] = decodeURIComponent(value);
 
       return queryParams;
     }, {});
