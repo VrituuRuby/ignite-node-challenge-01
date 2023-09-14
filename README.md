@@ -1,5 +1,3 @@
-# IGNITE NODE JS CHALLENGE
-
 ## About the Challenge
 
 This challenge is for creating an API for performing CRUD (Createe, Reead, Update, Delete) operations for _tasks_.
@@ -7,7 +5,7 @@ But I've done it using only Node.js built-in modules, which includes using JSON 
 
 ## How to Run
 
-To create JSON database and run API on http://localhost:3333, in the terminal run:
+To create the JSON database and initiate the API on http://localhost:3333, follow these commands in your terminal:
 
 ```console
 npm run start
