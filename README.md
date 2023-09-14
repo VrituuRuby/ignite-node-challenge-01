@@ -3,25 +3,29 @@
 ## About the Challenge
 
 This challenge is for creating an API for performing CRUD (Createe, Reead, Update, Delete) operations for _tasks_.
-But I've made using only nodejs built-in modules, that also means using a JSON as database and FileSystem for importing CSV files.
+But I've done it using only Node.js built-in modules, which includes using JSON as a database and the FileSystem module for importing CSV files.
 
 ## How to Run
 
 ```console
-npm run dev
-```
+npm run start
 
 or
 
-```console
-yarn dev
+yarn start
 ```
 
-To seed the database importing tasks with the streams/tasks.csv file run:
+To seed the database, with the API running, run:
 
 ```console
-node src/importCSV.js
+yarn seed
+
+or
+
+npm run seed
 ```
+
+It imports tasks from the `tasks.csv` file inside `streams` folder.
 
 ### API Features:
 

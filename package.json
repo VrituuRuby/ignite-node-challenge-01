@@ -7,6 +7,8 @@
   "author": "Victor Velozo",
   "license": "MIT",
   "scripts": {
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "start": "node src/server",
+    "seed": "node streams/importCSV.js"
   }
 }
