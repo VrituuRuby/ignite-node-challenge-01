@@ -17,7 +17,7 @@ or
 yarn start
 ```
 
-To seed the database, with the API running, run:
+To populate the database with data, while running API execute this command:
 
 ```console
 yarn seed
@@ -27,7 +27,7 @@ or
 npm run seed
 ```
 
-It imports tasks from the `tasks.csv` file inside `streams` folder.
+This command imports tasks from the `tasks.csv` located within the `streams` folder.
 
 ### API Features:
 
