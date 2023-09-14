@@ -7,6 +7,8 @@ But I've done it using only Node.js built-in modules, which includes using JSON 
 
 ## How to Run
 
+To create JSON database and run API on http://localhost:3333, in the terminal run:
+
 ```console
 npm run start
 
