@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import readline from "node:readline";
 
-const csvPath = "streams/tarefas.csv";
+const csvPath = "streams/tasks.csv";
 
 const readStream = fs.createReadStream(csvPath);
 const rl = readline.createInterface({ input: readStream });
