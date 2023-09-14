@@ -1,0 +1,12 @@
+{
+  "name": "tasks-crud",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Task API built entirely in pure Node.js (without any libraries), as part of the challenge from Rocketseat's Ignite Node.js Course.",
+  "main": "server.js",
+  "author": "Victor Velozo",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  }
+}
